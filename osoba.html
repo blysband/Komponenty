@@ -1,0 +1,9 @@
+<hr>
+<editable-field field-value="$ctrl.student.imie" field-type="text"></editable-field>
+<editable-field field-value="$ctrl.student.nazwisko" field-type="text"></editable-field>
+<editable-field ng-show="$ctrl.pokaz" field-value="$ctrl.student.wiek" field-type="number"></editable-field>
+<span ng-show="$ctrl.pokaz">{{$ctrl.student.wiek}}</span>
+<oceny student="$ctrl.student">
+
+
+</oceny>
