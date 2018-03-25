@@ -1,0 +1,20 @@
+<button ng-click="pokaz = !pokaz">Pokaz ukryj wiek</button>
+<div ng-repeat="student in $ctrl.studenci">
+
+      {{$index+1}}
+      <span>{{ student.imie + ' ' + student.nazwisko}}</span>
+      <span ng-show="pokaz">{{student.wiek}}</span>
+      <div>
+        <span ng-if="student.oceny.length>0">Oceny:</span>
+
+
+        <span ng-repeat="ocena in student.oceny">
+          <span ng-if="ocena==2" style="color:red">{{ocena}}</span>
+          <span ng-if="ocena==5" style="color:green">{{ocena}}</span>
+          <span ng-if="ocena!=2 && ocena != 5" style="color:black">{{ocena}}</span>
+        </span>
+
+      </div>
+      <span ng-if="student.oceny.length>0">Srednia ocen: {{kontroler.average(student)}}</span>
+
+</div>
