@@ -25,11 +25,18 @@ myApp.component('osoby',{
   controller: studenciCtrl
 
 });
+function studentCtrl() {
+  this.update = function(prop, value) {
+    this.onUpdate({student: this.student, prop: prop, value: value});
+  };
+}
 myApp.component('osoba',{
   templateUrl: 'osoba.html',
+  controller: studentCtrl,
   bindings: {
     student: '<',
-    pokaz: '<'
+    pokaz: '<',
+    // onUpdate: '&'
   }
 });
 myApp.component('oceny',{
@@ -45,5 +52,33 @@ myApp.component('oceny',{
   },
   bindings: {
     student: '<'
+  }
+});
+
+function EditableFieldController($scope, $element, $attrs) {
+  var ctrl = this;
+  ctrl.editMode = false;
+
+  ctrl.handleModeChange = function() {
+    if (ctrl.editMode) {
+      ctrl.onUpdate({value: ctrl.fieldValue});
+    }
+    ctrl.editMode = !ctrl.editMode;
+  };
+
+  ctrl.$onInit = function() {
+
+    if (!ctrl.fieldType) {
+      ctrl.fieldType = 'text';
+    }
+  };
+};
+myApp.component('editableField', {
+  templateUrl: 'editable.html',
+  controller: EditableFieldController,
+  bindings: {
+    fieldValue: '<',
+    fieldType: '@?',
+    onUpdate: '&'
   }
 });
