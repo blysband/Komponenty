@@ -1,0 +1,11 @@
+<br>
+<span ng-if="$ctrl.student.oceny.length>0">Oceny:</span>
+
+
+<span ng-repeat="ocena in $ctrl.student.oceny">
+  <span ng-if="ocena==2" style="color:red">{{ocena}}</span>
+  <span ng-if="ocena==5" style="color:green">{{ocena}}</span>
+  <span ng-if="ocena!=2 && ocena != 5" style="color:black">{{ocena}}</span>
+</span>
+
+<div ng-if="$ctrl.student.oceny.length>0">Srednia ocen: {{$ctrl.average($ctrl.student)}}</div>

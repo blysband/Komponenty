@@ -19,13 +19,6 @@ function studenciCtrl() {
     oceny: []
   }
   ];
-  this.average = function(student) {
-    let suma=0;
-      for(let i = 0;i<student.oceny.length;++i) {
-        suma += student.oceny[i];
-      }
-    return suma/student.oceny.length;
-  };
 };
 myApp.component('osoby',{
   templateUrl: 'osoby.html',
@@ -35,9 +28,22 @@ myApp.component('osoby',{
 myApp.component('osoba',{
   templateUrl: 'osoba.html',
   bindings: {
-    student: '<'
-
+    student: '<',
+    pokaz: '<'
   }
-
-})
-;
+});
+myApp.component('oceny',{
+  templateUrl: 'oceny.html',
+  controller: function ocenyController(){
+    this.average = function(student) {
+      let suma=0;
+        for(let i = 0;i<student.oceny.length;++i) {
+          suma += student.oceny[i];
+        }
+      return suma/student.oceny.length;
+    };
+  },
+  bindings: {
+    student: '<'
+  }
+});
